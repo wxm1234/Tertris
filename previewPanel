@@ -1,0 +1,43 @@
+public class previewPanel extends JPanel {
+	/**
+	 * previewPanel
+	 */
+	private static final long serialVersionUID = -9138751470657032738L;
+	private Color defaultColor;
+	private JLabel[][] btList;
+
+	public previewPanel() {
+		btList = new JLabel[5][5];
+		this.setMaximumSize(new Dimension(25, 25));
+		this.setPreferredSize(new Dimension(25, 25));
+		this.setLayout(new GridLayout(5, 5, 0, 0));
+		for (int i = 0; i < 5; i++)
+			for (int j = 0; j < 5; j++) {
+				JLabel jl = new JLabel(" + ");
+				btList[i][j] = jl;
+				defaultColor = jl.getBackground();
+				jl.setOpaque(true);
+				jl.setPreferredSize(new Dimension(3, 3));
+				jl.setMaximumSize(new Dimension(3, 3));
+				jl.setBorder(new BasicBorders.ButtonBorder(Color.decode("#F4FCFF"),Color.decode("#F4FCFF"),
+						Color.decode("#F4FCFF"),Color.lightGray));
+				this.add(jl);
+			}
+	}
+
+	public void updatePreviewUI(final int[][] dataList) {
+		for (int i = 0; i < 5; i++)
+			for (int j = 0; j < 5; j++) {
+				btList[i][j].setBackground(defaultColor);
+			}
+		
+		int m_rows = dataList.length;
+		int m_cols = dataList[0].length;
+		for (int i = 0; i < m_rows; i++)
+			for (int j = 0; j < m_cols; j++) {
+				if (dataList[i][j] == 1)
+					btList[i+1][j+1].setBackground(Color.red);
+			}
+	}
+
+}
