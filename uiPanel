@@ -1,0 +1,40 @@
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.HashMap;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicBorders;
+
+/**
+ * 
+ * @author 
+ *
+ */
+public class uiPanel extends JPanel {
+
+	/**
+	 * uiPanel
+	 */
+	private static final long serialVersionUID = -1448161016043481604L;
+
+	public uiPanel() {
+		
+		this.setBorder(BorderFactory.createEtchedBorder(Color.lightGray, Color.blue));
+		int[][] dataList = globalManager.getGlobalData();
+		this.setLayout(new GridLayout(dataList.length, dataList[0].length));
+		HashMap<String, JLabel> btList = globalManager.getBtList();
+		
+		for (int i = 0; i < dataList.length; i++) {
+			for (int j = 0; j < dataList[0].length; j++) {
+				JLabel lb = btList.get(i + "_" + j);
+				 
+				lb.setBorder(new BasicBorders.ButtonBorder(Color.decode("#F4FCFF"),Color.decode("#F4FCFF"),
+						Color.decode("#F4FCFF"),Color.lightGray));
+				this.add(lb);
+			}
+		}
+	}
+
+}
