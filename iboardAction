@@ -1,0 +1,11 @@
+public interface iboardAction {
+
+	void moveLeft();
+
+	void moveRight();
+
+	void moveDown();
+
+	boolean canMove(int x, int y);
+
+}
